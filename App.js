@@ -11,6 +11,7 @@ import type {Node} from 'react';
 
 import React from 'react';
 import {
+  TextInput,
   Button,
   ImageBackground,
   StyleSheet,
@@ -35,7 +36,11 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  return <View></View>;
+  return (
+    <View>
+      <TextInput placeholder="123" />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
