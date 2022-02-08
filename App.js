@@ -3,61 +3,21 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
- * @format
- * @flow strict-local
  */
 
-import type {Node} from 'react';
-
 import React from 'react';
-import {
-  TextInput,
-  Button,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  TouchableOpacity,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Text} from 'react-native';
 
-const App: () => Node = () => {
-  const accessibilityAction = [
-    {
-      name: 'activate',
-      label: 'activate label',
-    },
-  ];
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Text>Awesome App</Text>;
+  }
+}
 
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <View>
-      <TextInput placeholder="123" />
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: 50,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  group: {backgroundColor: 'yellow', margin: 50},
-});
+// const styles = StyleSheet.create({
+// });
 
 export default App;
