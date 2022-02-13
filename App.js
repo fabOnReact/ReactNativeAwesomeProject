@@ -19,11 +19,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
   }
+  header = () => {
+    return (
+      <View>
+        <Text>POSTS</Text>
+      </View>
+    );
+  };
   render() {
     return (
       <FlatList
         keyExtractor={item => item.id}
-        numColumns={undefined}
+        // importantForAccessibility="yes"
+        numColumns={3}
         pagingEnabled={true}
         data={DATA}
         renderItem={renderItem}
@@ -36,19 +44,19 @@ class App extends React.Component {
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    title: 'Marketplace',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    title: 'FriendsList',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    title: 'Groups',
   },
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb8bbb',
-    title: 'Fourth Item',
+    title: 'Pages',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97676',
@@ -69,6 +77,10 @@ const DATA = [
   {
     id: '58694a0f-3da1-471f-bd96-115571429234',
     title: 'Nine Item',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-1155h1429234',
+    title: 'Ten Item',
   },
   {
     id: '58694a0f-3da1-471f-bd96-1155h1429234',
