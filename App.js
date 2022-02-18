@@ -29,10 +29,11 @@ class App extends React.Component {
   render() {
     return (
       <FlatList
-        keyExtractor={item => item.id}
-        // importantForAccessibility="yes"
+        accessible={true}
+        accessibilityRole="grid"
         numColumns={3}
-        pagingEnabled={true}
+        keyExtractor={item => item.id}
+        pagingEnabled={false}
         data={DATA}
         renderItem={renderItem}
         keyExtractor={item => item.toString()}
@@ -43,54 +44,126 @@ class App extends React.Component {
 
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Marketplace',
+    id: '1',
+    title: '1 Item',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'FriendsList',
+    id: '2',
+    title: '2 Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Groups',
+    id: '3',
+    title: '3 Item',
   },
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb8bbb',
-    title: 'Pages',
+    id: '4',
+    title: '4 Item',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97676',
+    id: '5',
     title: 'Fifth Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e27234',
+    id: '6',
     title: 'Sixth Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29234',
+    id: '7',
     title: 'Seven Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571429234',
+    id: '8',
     title: 'Eight Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-115571429234',
+    id: '9',
     title: 'Nine Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-1155h1429234',
+    id: '10',
     title: 'Ten Item',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-1155h1429234',
-    title: 'Ten Item',
+    id: '11',
+    title: 'Eleven Item',
+  },
+  {
+    id: '12',
+    title: 'Twelve Item',
+  },
+  {
+    id: '13',
+    title: 'Thirdteen Item',
+  },
+  {
+    id: '14',
+    title: 'Fourteen Item',
+  },
+  {
+    id: '15',
+    title: 'Fifthteen Item',
+  },
+  {
+    id: '16',
+    title: 'Sixteen Item',
+  },
+  {
+    id: '17',
+    title: '17 Item',
+  },
+  {
+    id: '18',
+    title: '18 Item',
+  },
+  {
+    id: '19',
+    title: '19 Item',
+  },
+  {
+    id: '20',
+    title: '20 Item',
+  },
+  {
+    id: '21',
+    title: '21 Item',
+  },
+  {
+    id: '22',
+    title: '22 Item',
+  },
+  {
+    id: '21',
+    title: '23 Item',
+  },
+  {
+    id: '22',
+    title: '24 Item',
+  },
+  {
+    id: '22',
+    title: '25 Item',
+  },
+  {
+    id: '23',
+    title: '26 Item',
+  },
+  {
+    id: '24',
+    title: '27 Item',
+  },
+  {
+    id: '25',
+    title: '28 Item',
+  },
+  {
+    id: '26',
+    title: '29 Item',
   },
 ];
 
-const renderItem = ({item}) => (
-  <View style={styles.item}>
-    <Text>{item.title}</Text>
+const renderItem = ({item, key}) => (
+  <View key={key} style={styles.item}>
+    <Text key={key}>{item.title}</Text>
   </View>
 );
 
@@ -101,7 +174,7 @@ const styles = StyleSheet.create({
   },
   item: {
     height: 200,
-    width: 400,
+    width: 200,
     backgroundColor: 'red',
     padding: 20,
     marginVertical: 8,
