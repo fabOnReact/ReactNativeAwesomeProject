@@ -46,7 +46,6 @@ class App extends React.Component {
             Inline Links
           </Text>
         </Text>
-        <Text>Normal Text</Text>
         <Button
           accessibilityRole="button"
           title="Testing"
@@ -238,7 +237,7 @@ class App extends React.Component {
               accessibilityState={{disabled: true}}
               disabled={true}>
               <View>
-                <Text>
+                <Text accessibilityState={{disabled: true}}>
                   I am disabled. Clicking me will not trigger any action.
                 </Text>
               </View>
