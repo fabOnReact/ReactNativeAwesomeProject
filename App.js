@@ -6,7 +6,16 @@
  */
 
 import React from 'react';
-import {Text, Button, View, TouchableOpacity, Pressable} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  Text,
+  Button,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +23,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <>
+      <ScrollView>
         <Text accessible={true} accessibilityRole="link">
           This is a{' '}
           <Text
@@ -116,12 +125,187 @@ class App extends React.Component {
           }>
           <Text>message text</Text>
         </Pressable>
-      </>
+        <View>
+          <RNTesterBlock title="TextView without label">
+            <Text>
+              Text's accessibilityLabel is the raw text itself unless it is set
+              explicitly.
+            </Text>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="TextView with label">
+            <Text accessibilityLabel="I have label, so I read it instead of embedded text.">
+              This text component's accessibilityLabel is set explicitly.
+            </Text>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Nonaccessible view with TextViews">
+            <View>
+              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'blue'}}>This is text two.</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Accessible view with TextViews wihout label">
+            <View accessible={true}>
+              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'blue'}}>This is text two.</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Accessible view with TextViews with label">
+            <View
+              accessible={true}
+              accessibilityLabel="I have label, so I read it instead of embedded text.">
+              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'blue'}}>This is text two.</Text>
+            </View>
+          </RNTesterBlock>
+
+          {/* Android screen readers will say the accessibility hint instead of the text
+           since the view doesn't have a label. */}
+          <RNTesterBlock title="Accessible view with TextViews with hint">
+            <View accessibilityHint="Accessibility hint." accessible={true}>
+              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'blue'}}>This is text two.</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Accessible view TextViews with label and hint">
+            <View
+              accessibilityLabel="Accessibility label."
+              accessibilityHint="Accessibility hint."
+              accessible={true}>
+              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'blue'}}>This is text two.</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Text with accessibilityRole = header">
+            <Text accessibilityRole="header">This is a title.</Text>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Touchable with accessibilityRole = link">
+            <TouchableOpacity
+              onPress={() => Alert.alert('Link has been clicked!')}
+              accessibilityRole="link">
+              <View>
+                <Text>Click me</Text>
+              </View>
+            </TouchableOpacity>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Touchable with accessibilityRole = button">
+            <TouchableOpacity
+              onPress={() => Alert.alert('Button has been pressed!')}
+              accessibilityRole="button">
+              <Text>Click me</Text>
+            </TouchableOpacity>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Disabled Touchable with role">
+            <TouchableOpacity
+              onPress={() => Alert.alert('Button has been pressed!')}
+              accessibilityRole="button"
+              accessibilityState={{disabled: true}}
+              disabled={true}>
+              <View>
+                <Text>
+                  I am disabled. Clicking me will not trigger any action.
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="Disabled TouchableOpacity">
+            <TouchableOpacity
+              onPress={() => Alert.alert('Disabled Button has been pressed!')}
+              accessibilityLabel={'You are pressing Disabled TouchableOpacity'}
+              accessibilityState={{disabled: true}}>
+              <View>
+                <Text>
+                  I am disabled. Clicking me will not trigger any action.
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </RNTesterBlock>
+          <RNTesterBlock title="View with multiple states">
+            <View
+              accessible={true}
+              accessibilityState={{selected: true, disabled: true}}>
+              <Text>This view is selected and disabled.</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="View with label, hint, role, and state">
+            <View
+              accessible={true}
+              accessibilityLabel="Accessibility label."
+              accessibilityRole="button"
+              accessibilityState={{selected: true}}
+              accessibilityHint="Accessibility hint.">
+              <Text>Accessible view with label, hint, role, and state</Text>
+            </View>
+          </RNTesterBlock>
+
+          <RNTesterBlock title="TextInput with accessibilityLabelledBy attribute">
+            <View>
+              <Text nativeID="formLabel1">Mail Address</Text>
+              <TextInput
+                accessibilityLabel="input test1"
+                accessibilityLabelledBy="formLabel1"
+                style={styles.default}
+              />
+              <Text nativeID="formLabel2">First Name</Text>
+              <TextInput
+                accessibilityLabel="input test2"
+                accessibilityLabelledBy={['formLabel2', 'formLabel3']}
+                style={styles.default}
+                value="Foo"
+              />
+            </View>
+          </RNTesterBlock>
+        </View>
+      </ScrollView>
     );
   }
 }
 
-// const styles = StyleSheet.create({
-// });
+const RNTesterBlock = props => {
+  return <View style={{marginTop: 100}}>{props.children}</View>;
+};
+
+const styles = StyleSheet.create({
+  default: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#0f0f0f',
+    flex: 1,
+    fontSize: 13,
+    padding: 4,
+  },
+  touchable: {
+    backgroundColor: 'blue',
+    borderColor: 'red',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    borderStyle: 'solid',
+  },
+  image: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    marginRight: 10,
+  },
+  disabledImage: {
+    width: 120,
+    height: 120,
+  },
+  containerAlignCenter: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+});
 
 export default App;
