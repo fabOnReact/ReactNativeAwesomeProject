@@ -69,7 +69,21 @@ class App extends React.Component {
                 break;
             }
           }}>
-          <Text>Click me. I have the activate action.</Text>
+          <Text
+            accessible={true}
+            accessibilityActions={[{name: 'activate'}]}
+            onAccessibilityAction={event => {
+              switch (event.nativeEvent.actionName) {
+                case 'activate':
+                  Alert.alert(
+                    'Alert',
+                    'Text is clicked and event activate triggered',
+                  );
+                  break;
+              }
+            }}>
+            Click me. I and my parent view have the activate action.
+          </Text>
         </TouchableOpacity>
         <View
           accessible={true}
