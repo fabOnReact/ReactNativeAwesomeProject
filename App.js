@@ -7,6 +7,7 @@
 
 import React from 'react';
 import {
+  Alert,
   ScrollView,
   StyleSheet,
   TextInput,
@@ -53,6 +54,9 @@ class App extends React.Component {
         />
         <TouchableOpacity
           accessible={true}
+          focusabled={true}
+          accessibilityLabel="i'm an accessible view"
+          style={{height: 100, backgroundColor: 'yellow'}}
           onPress={() => console.log('pressed')}
           accessibilityActions={[{name: 'activate'}]}
           onAccessibilityAction={event => {
@@ -63,7 +67,7 @@ class App extends React.Component {
                 break;
             }
           }}>
-          <Text>Click me</Text>
+          <Text>Click me. I have the activate action.</Text>
         </TouchableOpacity>
         <View
           accessible={true}
@@ -141,7 +145,9 @@ class App extends React.Component {
 
           <RNTesterBlock title="Nonaccessible view with TextViews">
             <View>
-              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'green'}}>
+                This is text one inside Nonaccessible view.
+              </Text>
               <Text style={{color: 'blue'}}>This is text two.</Text>
             </View>
           </RNTesterBlock>
@@ -166,17 +172,23 @@ class App extends React.Component {
            since the view doesn't have a label. */}
           <RNTesterBlock title="Accessible view with TextViews with hint">
             <View accessibilityHint="Accessibility hint." accessible={true}>
-              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'green'}}>
+                This is text one inside a view with hint.
+              </Text>
               <Text style={{color: 'blue'}}>This is text two.</Text>
             </View>
           </RNTesterBlock>
 
           <RNTesterBlock title="Accessible view TextViews with label and hint">
             <View
+              focusable={true}
+              style={{height: 100, backgroundColor: 'red'}}
               accessibilityLabel="Accessibility label."
               accessibilityHint="Accessibility hint."
               accessible={true}>
-              <Text style={{color: 'green'}}>This is text one.</Text>
+              <Text style={{color: 'green'}}>
+                This is text one inside view with accessibilityLabel.
+              </Text>
               <Text style={{color: 'blue'}}>This is text two.</Text>
             </View>
           </RNTesterBlock>
@@ -231,8 +243,10 @@ class App extends React.Component {
           </RNTesterBlock>
           <RNTesterBlock title="View with multiple states">
             <View
-              accessible={true}
-              accessibilityState={{selected: true, disabled: true}}>
+              focusable={true}
+              accessibilityLabel="Accessibility label."
+              style={{height: 200, backgroundColor: 'red'}}
+              accessible={true}>
               <Text>This view is selected and disabled.</Text>
             </View>
           </RNTesterBlock>
