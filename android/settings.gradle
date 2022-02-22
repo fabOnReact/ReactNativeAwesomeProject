@@ -1,11 +1,12 @@
 rootProject.name = 'AwesomeProject'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
+// https://reactnative.dev/docs/next/new-architecture-app-intro
 includeBuild('../node_modules/react-native-gradle-plugin') {
     dependencySubstitution {
         substitute(module("com.facebook.react:react")).using(project(":"))
     }
 }
 
-    include(":ReactAndroid")
-    project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')
+include(":ReactAndroid")
+project(":ReactAndroid").projectDir = file('../node_modules/react-native/ReactAndroid')

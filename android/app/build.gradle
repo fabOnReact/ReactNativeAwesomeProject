@@ -1,5 +1,12 @@
 apply plugin: "com.android.application"
 
+// https://reactnative.dev/docs/next/new-architecture-app-intro
+apply plugin: "com.facebook.react"
+
+react {
+    reactRoot = rootProject.file("../node_modules/react-native/")
+    codegenDir = rootProject.file("../node_modules/react-native-codegen/")
+}
 import com.android.build.OutputFile
 
 /**
