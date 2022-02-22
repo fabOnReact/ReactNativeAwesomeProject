@@ -62,8 +62,10 @@ class App extends React.Component {
           onAccessibilityAction={event => {
             switch (event.nativeEvent.actionName) {
               case 'activate':
-                Alert.alert('Alert', 'View is clicked');
-                console.log('activate');
+                Alert.alert(
+                  'Alert',
+                  'View is clicked and event activate triggered',
+                );
                 break;
             }
           }}>
