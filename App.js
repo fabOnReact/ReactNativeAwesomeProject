@@ -25,6 +25,11 @@ class App extends React.Component {
   render() {
     return (
       <ScrollView>
+        <Text
+          accessibilityRole="button"
+          accessibilityState={{disabled: true, checked: true}}>
+          Text with accessibilityState
+        </Text>
         <Text accessible={true} accessibilityRole="link">
           This is a{' '}
           <Text
@@ -84,28 +89,6 @@ class App extends React.Component {
             Click me. I and my parent view have the activate action.
           </Text>
         </TouchableOpacity>
-        <View
-          accessible={true}
-          accessibilityActions={[
-            {name: 'cut', label: 'cut label'},
-            {name: 'copy', label: 'copy label'},
-            {name: 'paste', label: 'paste label'},
-          ]}
-          onAccessibilityAction={event => {
-            switch (event.nativeEvent.actionName) {
-              case 'cut':
-                Alert.alert('Alert', 'cut action success');
-                break;
-              case 'copy':
-                Alert.alert('Alert', 'copy action success');
-                break;
-              case 'paste':
-                Alert.alert('Alert', 'paste action success');
-                break;
-            }
-          }}>
-          <Text>This view supports many actions.</Text>
-        </View>
         <TouchableOpacity
           accessible={true}
           accessibilityActions={[
