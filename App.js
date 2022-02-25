@@ -28,16 +28,6 @@ class App extends React.Component {
   };
   render() {
     return (
-      <FlatList
-        accessible={true}
-        accessibilityRole="grid"
-        numColumns={3}
-        keyExtractor={item => item.id}
-        pagingEnabled={false}
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.toString()}
-      />
     );
   }
 }
@@ -168,21 +158,6 @@ const renderItem = ({item, key}) => (
 );
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    height: 200,
-    width: 200,
-    backgroundColor: 'red',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 16,
-  },
 });
 
 export default App;
