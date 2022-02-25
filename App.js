@@ -28,9 +28,31 @@ class App extends React.Component {
   };
   render() {
     return (
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={[1, 2, 3]}
+          renderItem={renderFlatList}
+          keyExtractor={item => item.toString()}
+        />
+      </SafeAreaView>
     );
   }
 }
+
+const Item = ({title}) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+  </View>
+);
+
+const renderItem = ({item}) => <Item title={item.title} />;
+
+const renderFlatList = ({item}) => (
+  <View>
+    <Text>Flatlist {item}</Text>
+    <FlatList renderItem={renderItem} horizontal data={DATA} />
+  </View>
+);
 
 const DATA = [
   {
@@ -158,6 +180,19 @@ const renderItem = ({item, key}) => (
 );
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+  },
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 16,
+  },
 });
 
 export default App;
