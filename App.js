@@ -30,7 +30,8 @@ class App extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          data={[1, 2, 3]}
+          horizontal={true}
+          data={DATA}
           renderItem={renderFlatList}
           keyExtractor={item => item.toString()}
         />
@@ -45,12 +46,9 @@ const Item = ({title}) => (
   </View>
 );
 
-const renderItem = ({item}) => <Item title={item.title} />;
-
 const renderFlatList = ({item}) => (
   <View>
-    <Text>Flatlist {item}</Text>
-    <FlatList renderItem={renderItem} horizontal data={DATA} />
+    <Item title={item.title} />
   </View>
 );
 
@@ -180,6 +178,8 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: '#f9c2ff',
+    height: 400,
+    width: 200,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
