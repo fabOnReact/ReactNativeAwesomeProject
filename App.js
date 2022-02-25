@@ -173,12 +173,6 @@ const DATA = [
   },
 ];
 
-const renderItem = ({item, key}) => (
-  <View key={key} style={styles.item}>
-    <Text key={key}>{item.title}</Text>
-  </View>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
